@@ -5,7 +5,7 @@ from dataBase import *
 
 
 ROOT.gROOT.SetStyle("Plain")
-ROOT.gROOT.SetBatch() #canvas will not be drawn
+#ROOT.gROOT.SetBatch() #canvas will not be drawn
 ROOT.gStyle.SetOptStat(0000)
 #ROOT.TGaxis.SetMaxDigits(4)
 #ROOT.gPad.SetTicks(0,1)
@@ -38,9 +38,9 @@ xmax = len(all_analysis_list)
 #---------defining histograms-----------
 c = ROOT.TCanvas("c","",1000,800)
 pad1 = ROOT.TPad("pad1","",0,0,1,1)
-pad2 = ROOT.TPad("pad2","",0,0,1,1)
-pad3 = ROOT.TPad("pad3","",0,0,1,1)
-pad4 = ROOT.TPad("pad4","",0,0,1,1)
+#pad2 = ROOT.TPad("pad2","",0,0,1,1)
+#pad3 = ROOT.TPad("pad3","",0,0,1,1)
+#pad4 = ROOT.TPad("pad4","",0,0,1,1)
 
 bins = xmax
 xmin = 0
@@ -54,10 +54,10 @@ hmax08 = ROOT.TH1F('hmax08', '', bins, xmin, xmax+1)
 index = 0
 for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 #for analysis_group in all_analysis:
-  print 'THIS IS THE ANALYSIS GROUP', analysis_group
+  #print 'THIS IS THE ANALYSIS GROUP', analysis_group
 
   name_tex = all_analysis[str(analysis_group)]["name_tex"] 
-  print 8*"*" , "in the analysis group : " , name_tex , 8*"*" # e.g. Stop&Sbottom
+  #print 8*"*" , "in the analysis group : " , name_tex , 8*"*" # e.g. Stop&Sbottom
   Tot = len(all_analysis[str(analysis_group)].keys())  
   for num in reversed(range(1,Tot+1)):              # This loop respectes the ordering definined by 'pos' int he dictionary!
    for interp in all_analysis[str(analysis_group)] :
@@ -66,9 +66,9 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
             interp_dict = all_analysis[analysis_group][interp] 
             if(interp_dict['pos']==num):
                hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
-               hmax06.SetBinContent(index+1, 0)
-               hmax07.SetBinContent(index+1, 0)
-               hmax08.SetBinContent(index+1, 0)
+               hmax06.SetBinContent(index+1, interp_dict["max"]["050"][0])
+               hmax07.SetBinContent(index+1, interp_dict["max"]["050"][0])
+               hmax08.SetBinContent(index+1, interp_dict["max"]["050"][0])
                xlabel =  interp_dict["max"]["050"][1]+' ' +interp_dict['search']
                if "rightlabel" in interp_dict.keys():
                   xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
@@ -113,40 +113,37 @@ hmax05.SetLabelOffset(-0.33, "X")
 #hmax05.GetYaxis().CenterTitle() 
 hmax05.SetMaximum(histo_xaxis_max)
 hmax05.Draw('HBAR0 Y+')
-pad1.Update()
-pad1.Modified()
-c.cd()
-pad2.SetFillStyle(4050)
-pad2.Draw("same")
-pad2.cd()
+#pad1.Update()
+#pad1.Modified()
+#c.cd()
+#pad2.SetFillStyle(4050)
+#pad2.Draw("same")
+#pad2.cd()
 hmax06.SetTickLength(0)
 hmax06.GetYaxis().SetTickLength(0.0)
 hmax06.SetLabelSize(0.013, "X")
 hmax06.SetLabelSize(0.0, "Y")
-#hmax06.SetFillStyle(4050)
-hmax06.Draw("HBAR0 same")
-c.cd()
-pad3.SetFillStyle(4050)
-pad3.Draw("same")
-pad3.cd()
+hmax06.SetFillStyle(0)
+#c.cd()
+#pad3.SetFillStyle(4050)
+#pad3.Draw("same")
+#pad3.cd()
 hmax07.SetTickLength(0)
 hmax07.GetYaxis().SetTickLength(0.0)
 hmax07.SetLabelSize(0.013, "X")
 hmax07.SetLabelSize(0.0, "Y")
 hmax07.SetLabelOffset(-0.3, "X")
-#hmax07.SetFillStyle(4050)
-hmax07.Draw("HBAR0 Y+ same")
-c.cd()
-pad4.SetFillStyle(4050)
-pad4.Draw("same")
-pad4.cd()
+hmax07.SetFillStyle(0)
+#c.cd()
+#pad4.SetFillStyle(4050)
+#pad4.Draw("same")
+#pad4.cd()
 hmax08.SetTickLength(0)
 hmax08.GetYaxis().SetTickLength(0.0)
 hmax08.SetLabelSize(0.013, "X")
 hmax08.SetLabelSize(0.0, "Y")
 hmax08.SetLabelOffset(-0.2, "X")
-#hmax08.SetFillStyle(4050)
-hmax08.Draw("HBAR0 Y+ same")
+hmax08.SetFillStyle(0)
 #pad1.Draw()
 #pad2.Draw("same")
 #------For PAS numbers / Production Types ------
@@ -168,7 +165,7 @@ name_tex_xPosition = -345 # Position of the vertical label of process type, e.g.
 Delta_Position = 240
 for analysis_group in  ['EWKGauginos','Squark','Gluino']:
   name_tex = all_analysis[str(analysis_group)]["name_tex"]
-  print name_tex
+  #print name_tex
   if (name_tex =='EWK Gauginos'): latex_ana.DrawLatex(name_tex_xPosition ,0 ,name_tex)                   # Shift Position for EWkinos label 
   elif (name_tex =='Gluino'):  latex_ana.DrawLatex(name_tex_xPosition ,41 ,name_tex)                     # Shift Position for EWkinos label 
   elif (name_tex =='Squark'):  latex_ana.DrawLatex(name_tex_xPosition ,21 ,name_tex)                     # Shift Position for EWkinos label 
@@ -178,7 +175,7 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
     if not "name_tex" in interp:
      interp_dict = all_analysis[analysis_group][interp]         #
      if(interp_dict['pos']==num ):              #
-       print len(all_analysis[str(analysis_group)].keys()) , num , interp_dict['pos']
+       #print len(all_analysis[str(analysis_group)].keys()) , num , interp_dict['pos']
        if 'line' in interp:
           exec('line_'+str(i)+' = ROOT.TLine(-320,(i*line_depence)+0.5,histo_xaxis_max,(i*line_depence)+0.5)')
           exec('line_'+str(i)+'.SetLineColor(line_color)')
@@ -230,9 +227,11 @@ tex5.Draw();
 
 #if not os.path.exists(path):
 #    os.makedirs(path)
-
-#pad2.Update()
-#pad2.Modified()
+hmax06.Draw("HBAR0 same")
+hmax05.Draw("HBAR0 Y+ same")
+hmax07.Draw("HBAR0 Y+ same")
+hmax08.Draw("HBAR0 Y+ same")
+c.Draw()
 c.SaveAs(path+filename+".pdf")
 c.SaveAs(path+filename+".C")
 c.SaveAs(path+filename+".png")
