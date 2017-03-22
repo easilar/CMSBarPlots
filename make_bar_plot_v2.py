@@ -8,6 +8,7 @@ ROOT.gROOT.SetStyle("Plain")
 ROOT.gROOT.SetBatch() #canvas will not be drawn
 ROOT.gStyle.SetOptStat(0000)
 #ROOT.TGaxis.SetMaxDigits(4)
+#ROOT.gPad.SetTicks(0,1)
 ROOT.gStyle.SetCanvasBorderMode(0)
 ROOT.gStyle.SetPadLeftMargin(0.18)
 ROOT.gStyle.SetPadRightMargin(0.05)
@@ -35,18 +36,21 @@ xmax = len(all_analysis_list)
 #print "in total there are " , xmax ,"analysis histogram xmas will be " , xmax+1 , ".This result is calculated with 4 empty histogram" 
 
 #---------defining histograms-----------
-c = ROOT.TCanvas()
-pad1 = ROOT.TPad() #"pad1","",0,0,1,1
-pad2 = ROOT.TPad() #"pad2","",0,0,1,1
-pad2.SetFillStyle(4000) #will be transperant
+c = ROOT.TCanvas("c","",1000,800)
+pad1 = ROOT.TPad("pad1","",0,0,1,1)
+pad2 = ROOT.TPad("pad2","",0,0,1,1)
+pad3 = ROOT.TPad("pad3","",0,0,1,1)
+pad4 = ROOT.TPad("pad4","",0,0,1,1)
+
 bins = xmax
 xmin = 0
 #----------create TH1F with fixed bins-----------------
 hmax05 = ROOT.TH1F('hmax05', '', bins, xmin, xmax+1)
 hmax06 = ROOT.TH1F('hmax06', '', bins, xmin, xmax+1)
+hmax07 = ROOT.TH1F('hmax07', '', bins, xmin, xmax+1)
+hmax08 = ROOT.TH1F('hmax08', '', bins, xmin, xmax+1)
 
 #-----------fill histograms--------------
-
 index = 0
 for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 #for analysis_group in all_analysis:
@@ -55,57 +59,46 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
   name_tex = all_analysis[str(analysis_group)]["name_tex"] 
   print 8*"*" , "in the analysis group : " , name_tex , 8*"*" # e.g. Stop&Sbottom
   Tot = len(all_analysis[str(analysis_group)].keys())  
-  for num in reversed(range(1,Tot+1)):				      # This loop respectes the ordering definined by 'pos' int he dictionary!
- 	 for interp in all_analysis[str(analysis_group)] :
-#             print 'interp', interp
-#             print 'INTERP',interp
-   	     if not "name" in interp : 
-#     	        print 4*"-" , "interp is :" , interp
-      		interp_dict = all_analysis[analysis_group][interp] 
-
-#      print "for this pas :" , interp_dict["max"]["050"][1] 
-#      print "for this lumi :" , interp_dict["max"]["050"][3] 
-#      print "the limit will be set to :" , interp_dict["max"]["050"][0] 
-#      print "with label :" , interp_dict["decay"]
-#                print interp_dict , interp
-#                print interp_dict['pos'], num 
-                if(interp_dict['pos']==num):
-                  # print num,(interp_dict)['pos'], interp
-     	    	   hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
-     	    	   hmax05.GetXaxis().SetBinLabel(index+1, interp_dict["decay"])
-     	    	   hmax06.SetBinContent(index+1, interp_dict["max"]["050"][0])
-     	    	   hmax06.GetXaxis().SetBinLabel(index+1, interp_dict["search"])
-                   
-      	   	   index +=1
-'''
-index = 0
-for analysis_group in all_analysis:
-  print 'THIS IS THE ANALYSIS GROUP', analysis_group
-  name_tex = all_analysis[str(analysis_group)]["name_tex"]
-  print 8*"*" , "in the analysis group : " , name_tex , 8*"*"
-  for interp in all_analysis[str(analysis_group)] :
-    if not "name" in interp : 
-      print 4*"-" , "interp is :" , interp
-      interp_dict = all_analysis[analysis_group][interp] 
-#      print "for this pas :" , interp_dict["max"]["050"][1] 
-#      print "for this lumi :" , interp_dict["max"]["050"][3] 
-#      print "the limit will be set to :" , interp_dict["max"]["050"][0] 
-#      print "with label :" , interp_dict["decay"]
-      print 'The bin considered is', index
-      hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
-      hmax05.GetXaxis().SetBinLabel(index+1, interp_dict["decay"])
-'''
-
+  for num in reversed(range(1,Tot+1)):              # This loop respectes the ordering definined by 'pos' int he dictionary!
+   for interp in all_analysis[str(analysis_group)] :
+         if not "name" in interp : 
+            #print 4*"-" , "interp is :" , interp
+            interp_dict = all_analysis[analysis_group][interp] 
+            if(interp_dict['pos']==num):
+               hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
+               hmax06.SetBinContent(index+1, 0)
+               hmax07.SetBinContent(index+1, 0)
+               hmax08.SetBinContent(index+1, 0)
+               xlabel =  interp_dict["max"]["050"][1]+' ' +interp_dict['search']
+               if "rightlabel" in interp_dict.keys():
+                  xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
+               extra_xlabel_1 = ""
+               extra_xlabel_2 = ""
+               if "comm" in interp_dict.keys():
+                  extra_xlabel_1 +=interp_dict['comm']
+               if "x" in interp_dict.keys():
+                  extra_xlabel_2 +="#scale[1.2]{#font[22]{x="+str(interp_dict['x'])+"}}"
+               hmax05.GetXaxis().SetBinLabel(index+1, xlabel)
+               hmax06.GetXaxis().SetBinLabel(index+1, interp_dict["decay"]) 
+               hmax07.GetXaxis().SetBinLabel(index+1, extra_xlabel_1)
+               hmax08.GetXaxis().SetBinLabel(index+1, extra_xlabel_2)
+               index +=1
 
 #----------draw plot-----------
+
+c.cd()
 pad1.Draw()
 pad1.cd()
+
 hmax05.SetFillColor(bar_color)
 hmax05.SetStats(0)
 hmax05.SetBarWidth(bar_width)
+#hmax05.SetFillStyle(4050)
 hmax05.SetBarOffset(0.05)
 hmax05.SetTickLength(0)
 hmax05.GetYaxis().SetTickLength(0.015)
+#hmax05.GetXaxis().SetTicks("-")
+#hmax05.GetXaxis().SetTickLength(0.01)
 hmax05.SetYTitle("Mass scale [GeV]")
 hmax05.GetYaxis().SetTitleFont(42)
 hmax05.SetTitleSize(0.025, "Y")
@@ -114,36 +107,48 @@ hmax05.SetLabelSize(0.013, "X")
 hmax05.SetLabelSize(0.025, "Y")
 hmax05.SetLabelFont(42, "X")
 hmax05.SetLabelFont(42, "Y")
+hmax05.SetLabelOffset(-0.33, "X")
+#newaxis.SetLabelOffset(-0.03)
+#newaxis.Draw()
 #hmax05.GetYaxis().CenterTitle() 
 hmax05.SetMaximum(histo_xaxis_max)
-hmax05.Draw('HBAR0')
+hmax05.Draw('HBAR0 Y+')
 pad1.Update()
+pad1.Modified()
 c.cd()
-pad2.Draw()
+pad2.SetFillStyle(4050)
+pad2.Draw("same")
 pad2.cd()
-#hmax06.SetBarWidth(bar_width)
-#hmax06.SetBarOffset(0.05)
-#hmax06.SetTickLength(0)
-hmax06.SetFillColor(bar_color)
-hmax06.SetBarWidth(bar_width)
-hmax06.SetStats(0)
-hmax06.SetBarOffset(0.05)
 hmax06.SetTickLength(0)
-hmax06.GetYaxis().SetTickLength(0.015)
-#hmax06.SetYTitle("Mass scale [GeV]")
-hmax06.GetYaxis().SetTitleFont(42)
-hmax06.SetTitleSize(0.025, "Y")
-hmax06.GetYaxis().SetTitleOffset(1.1)
+hmax06.GetYaxis().SetTickLength(0.0)
 hmax06.SetLabelSize(0.013, "X")
-hmax06.SetLabelSize(0.025, "Y")
-hmax06.SetLabelFont(42, "X")
-hmax06.SetLabelFont(42, "Y")
-hmax06.SetLabelOffset(-0.03, "Y")
-hmax06.SetMaximum(histo_xaxis_max)
-hmax06.SetFillStyle(4050)
-hmax06.Draw()
-pad2.Update()
-
+hmax06.SetLabelSize(0.0, "Y")
+#hmax06.SetFillStyle(4050)
+hmax06.Draw("HBAR0 same")
+c.cd()
+pad3.SetFillStyle(4050)
+pad3.Draw("same")
+pad3.cd()
+hmax07.SetTickLength(0)
+hmax07.GetYaxis().SetTickLength(0.0)
+hmax07.SetLabelSize(0.013, "X")
+hmax07.SetLabelSize(0.0, "Y")
+hmax07.SetLabelOffset(-0.3, "X")
+#hmax07.SetFillStyle(4050)
+hmax07.Draw("HBAR0 Y+ same")
+c.cd()
+pad4.SetFillStyle(4050)
+pad4.Draw("same")
+pad4.cd()
+hmax08.SetTickLength(0)
+hmax08.GetYaxis().SetTickLength(0.0)
+hmax08.SetLabelSize(0.013, "X")
+hmax08.SetLabelSize(0.0, "Y")
+hmax08.SetLabelOffset(-0.2, "X")
+#hmax08.SetFillStyle(4050)
+hmax08.Draw("HBAR0 Y+ same")
+#pad1.Draw()
+#pad2.Draw("same")
 #------For PAS numbers / Production Types ------
 latex_pas = ROOT.TLatex()
 latex_pas.SetTextSize(0.013)
@@ -164,60 +169,17 @@ Delta_Position = 240
 for analysis_group in  ['EWKGauginos','Squark','Gluino']:
   name_tex = all_analysis[str(analysis_group)]["name_tex"]
   print name_tex
-  if (name_tex =='EWK Gauginos'): latex_ana.DrawLatex(name_tex_xPosition ,0 ,name_tex)                   # Shift Position for EWkinos label	
-  elif (name_tex =='Gluino'):  latex_ana.DrawLatex(name_tex_xPosition ,41 ,name_tex)                     # Shift Position for EWkinos label	
-  elif (name_tex =='Squark'):  latex_ana.DrawLatex(name_tex_xPosition ,21 ,name_tex)                     # Shift Position for EWkinos label	
-
+  if (name_tex =='EWK Gauginos'): latex_ana.DrawLatex(name_tex_xPosition ,0 ,name_tex)                   # Shift Position for EWkinos label 
+  elif (name_tex =='Gluino'):  latex_ana.DrawLatex(name_tex_xPosition ,41 ,name_tex)                     # Shift Position for EWkinos label 
+  elif (name_tex =='Squark'):  latex_ana.DrawLatex(name_tex_xPosition ,21 ,name_tex)                     # Shift Position for EWkinos label 
   Tot = len(all_analysis[str(analysis_group)].keys())  
   for num in reversed(range(1,Tot+1)):  
    for interp in all_analysis[str(analysis_group)] :
-#    print interp
     if not "name_tex" in interp:
-#     print 'interp', interp                                                                  # This loop respectes the ordering definined by 'pos' int he dictionary!
-     interp_dict = all_analysis[analysis_group][interp]		      #
-#    print interp_dict
-     if(interp_dict['pos']==num ):				      #
+     interp_dict = all_analysis[analysis_group][interp]         #
+     if(interp_dict['pos']==num ):              #
        print len(all_analysis[str(analysis_group)].keys()) , num , interp_dict['pos']
-       if analysis_group == 'EWKGauginos':
-         #latex_pas.DrawLatex(20,pas_place-0.05 ,interp_dict["max"]["050"][1]+' ' +interp_dict['search'] ) # Print CMS-SUS-XXX 0L '-like
-         if ('comm' in interp_dict.keys()): 
-             latex_pas.SetTextSize(0.012) 
-             latex_pas.DrawLatex(Delta_Position,pas_place ,interp_dict['comm'] )
-             latex_pas.SetTextSize(0.013)
-
-       elif analysis_group == 'Squark':
-#            print interp, 'INTERP'
-#            print interp_dict, 'interp_dic *** ' , interp
-            if ('squark' in interp):
-               print 10*'o'
-               squarks = '#tilde{q}_{R}+#tilde{q}_{L}(#tilde{u},#tilde{d},#tilde{c},#tilde{s})'
-               latex_pas.DrawLatex(interp_dict["max"]["050"][0]+10,pas_place-0.05 ,squarks)      
-               #latex_pas.DrawLatex(20,pas_place-0.18 ,interp_dict["max"]["050"][1]+' ' +interp_dict['search'] )
-            elif 'T2bbWWoff' in interp:
-                  #latex_pas.DrawLatex(20,pas_place-0.18 ,interp_dict["max"]["050"][1] + ' ' + interp_dict['search'])
-                  latex_pas.SetTextSize(0.012)
-                  latex_pas.DrawLatex(Delta_Position,pas_place-0.18 ,interp_dict['comm'] ) # TODO change here to plot the DeltaM comment in a different place
-                  latex_pas.SetTextSize(0.013)
-            #else: latex_pas.DrawLatex(20,pas_place-0.18 ,interp_dict["max"]["050"][1]+' ' +interp_dict['search'] )
-    
-
-       elif analysis_group == 'Gluino':
-         if ('comm' in interp_dict.keys()): 
-             latex_pas.SetTextSize(0.012) 
-             latex_pas.DrawLatex(300,pas_place ,interp_dict['comm'] )
-             latex_pas.SetTextSize(0.013)
-
-         #latex_pas.DrawLatex(20,pas_place-0.3 ,interp_dict["max"]["050"][1]+' ' +interp_dict['search'] ) 
-#       else:
-#         latex_pas.DrawLatex(20,pas_place ,interp_dict["max"]["050"][1]+' ' +interp_dict['search'] ) 
-#       if "empty" in interp and analysis_group!='StopandSbottom':
-
-       if 'x' in interp_dict.keys():
-          if  (analysis_group == 'EWKGauginos'): latex_pas.DrawLatex(750,pas_place-0.15 ,'x='+str(interp_dict["x"]) )
-          else: latex_pas.DrawLatex(580,pas_place-0.2 ,'x='+str(interp_dict["x"]) )
-
        if 'line' in interp:
-#          print "empty from " , name_tex
           exec('line_'+str(i)+' = ROOT.TLine(-320,(i*line_depence)+0.5,histo_xaxis_max,(i*line_depence)+0.5)')
           exec('line_'+str(i)+'.SetLineColor(line_color)')
           exec('line_'+str(i)+'.SetLineStyle(7)')
@@ -227,18 +189,18 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 
 #------------CMS Headers ------------------------#
 tex = ROOT.TLatex(0,45.0,"Selected CMS SUSY Results* - SMS Interpretation")
-tex.SetTextSize(0.035)
+tex.SetTextSize(0.025)
 tex.SetLineWidth(2)
 tex.Draw()
-tex2 = ROOT.TLatex(1480,45.0,"ICHEP 2016 data set")
-tex2.SetTextSize(0.035)
+tex2 = ROOT.TLatex(1400,45.0,"Moriond 2017 data set")
+tex2.SetTextSize(0.025)
 tex2.SetLineWidth(2)
 tex2.Draw()
-tex1 = ROOT.TLatex(1400,20,"CMS Preliminary")
+tex1 = ROOT.TLatex(1350,20,"CMS Preliminary")
 tex1.SetTextSize(0.04)
 tex1.SetLineWidth(2)
 tex1.Draw()
-tex3 = ROOT.TLatex(1410,18.,"#sqrt{s} = 13 TeV , L  = 12.9 fb^{-1}")
+tex3 = ROOT.TLatex(1350,18.,"#sqrt{s} = 13 TeV , L  = 35.9 fb^{-1}")
 tex3.SetTextSize(0.025)
 tex3.SetLineWidth(2)
 tex3.Draw()
@@ -269,8 +231,9 @@ tex5.Draw();
 #if not os.path.exists(path):
 #    os.makedirs(path)
 
-c.Print(path+filename+".pdf")
-c.Print(path+filename+".C")
-c.Print(path+filename+".png")
-c.Print(path+filename+".root")
-
+#pad2.Update()
+#pad2.Modified()
+c.SaveAs(path+filename+".pdf")
+c.SaveAs(path+filename+".C")
+c.SaveAs(path+filename+".png")
+c.SaveAs(path+filename+".root")

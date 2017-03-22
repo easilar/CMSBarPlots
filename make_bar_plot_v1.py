@@ -42,7 +42,6 @@ xmin = 0
 hmax05 = ROOT.TH1F('hmax05', '', bins, xmin, xmax+1)
 
 #-----------fill histograms--------------
-
 index = 0
 for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 #for analysis_group in all_analysis:
@@ -56,8 +55,8 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 #             print 'interp', interp
 #             print 'INTERP',interp
          if not "name" in interp : 
-#               print 4*"-" , "interp is :" , interp
-          interp_dict = all_analysis[analysis_group][interp] 
+            #print 4*"-" , "interp is :" , interp
+            interp_dict = all_analysis[analysis_group][interp] 
 
 #      print "for this pas :" , interp_dict["max"]["050"][1] 
 #      print "for this lumi :" , interp_dict["max"]["050"][3] 
@@ -65,12 +64,16 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 #      print "with label :" , interp_dict["decay"]
 #                print interp_dict , interp
 #                print interp_dict['pos'], num 
-                if(interp_dict['pos']==num):
+            if(interp_dict['pos']==num):
                   # print num,(interp_dict)['pos'], interp
                hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
                hmax05.GetXaxis().SetBinLabel(index+1, interp_dict["decay"])
                    
                index +=1
+
+
+
+
 '''
 index = 0
 for analysis_group in all_analysis:
@@ -111,6 +114,8 @@ hmax05.SetLabelFont(42, "Y")
 #hmax05.GetYaxis().CenterTitle() 
 hmax05.SetMaximum(histo_xaxis_max)
 hmax05.Draw('HBAR0')
+
+#hmax05.Draw('HBAR0same')
 #------For PAS numbers / Production Types ------
 latex_pas = ROOT.TLatex()
 latex_pas.SetTextSize(0.013)

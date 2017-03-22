@@ -31,7 +31,6 @@ T5ZZGMSB = '#tilde{g} #rightarrow qq#tilde{#chi}^{0} _1, #tilde{#chi}^{0} _1 #ri
 
 squarks = '#tilde{q}_{R}+#tilde{q}_{L}(#tilde{u},#tilde{d},#tilde{c},#tilde{s})'
 
-
 Delta_Mother = 'M_{Mother}- M_{LSP}#approx'
 Delta_Interm = 'M_{Interm.}- M_{LSP}#approx'
 # NEW
@@ -96,8 +95,8 @@ all_analysis["Squark"]['16-015-T2bb']  = {'pos':15,'search':'0l(MT2)', 		'max'  
 Squark
 '''
 #all_analysis["Squark"]['line']           	 = {'pos':18,'search':'', 		'max'  : {'050': [0.0, ''           , 0 , 0   ]}, 	'decay': ''  ,    }
-all_analysis["Squark"]['16-014-T2-squark']       = {'pos':16,'search':'0l(MHT)', 	'max'  : {'050': [1160, 'SUS-16-014',   sqrt, lumi]},   'decay': T2,  }
-all_analysis["Squark"]['16-015-T2-squark']       = {'pos':17,'search':'0l(MT2)',	'max'  : {'050': [1400, 'SUS-16-015',   sqrt, lumi]},   'decay': T2,    }
+all_analysis["Squark"]['16-014-T2-squark']       = {'pos':16,'search':'0l(MHT)', 	'max'  : {'050': [1160, 'SUS-16-014',   sqrt, lumi]},   'decay': T2, 'rightlabel': squarks }
+all_analysis["Squark"]['16-015-T2-squark']       = {'pos':17,'search':'0l(MT2)',	'max'  : {'050': [1400, 'SUS-16-015',   sqrt, lumi]},   'decay': T2, 'rightlabel': squarks }
 #all_analysis["Squark"]['']           	 = {'pos':18,'search':'', 		'max'  : {'050': [0.0, ''           , 0 , 0   ]}, 	'decay': ''  ,    }
 
 
