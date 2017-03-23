@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import ROOT
 import os, argparse, types, sys
-from dataBase import *
+from dataBase_1 import *
 
 
 ROOT.gROOT.SetStyle("Plain")
@@ -16,11 +16,16 @@ ROOT.gStyle.SetPadBottomMargin(0.15)
 ROOT.gStyle.SetPadTopMargin(0.08)
 
 #----------------------------#Configure plot from here#----------------------#
-bar_color_13 = ROOT.kGray 
-bar_color_36 = ROOT.kBlue # 36 fb bar color
+bar_color_13 = ROOT.kGray
+bar_color_13_Dark = ROOT.kGray+2
+bar_color_36 = ROOT.kAzure+1 # 36 fb bar color
+#bar_color_36 = ROOT.kGray
+#bar_color_13 = ROOT.kCyan-10 # 36 fb bar color
+
+
 bar_width  =  0.85 
 tex_width  =  1.035 #will determine pas names spacing 
-histo_xaxis_max = 2200
+histo_xaxis_max = 2100
 line_color = ROOT.kBlue
 line_depence = 1.03 ## 2 blue lines spacing maybe we change this as well 
 #path = "/afs/hephy.at/user/e/easilar/www/barplots/" #TODO
@@ -71,7 +76,8 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
             #print 4*"-" , "interp is :" , interp
             interp_dict = all_analysis[analysis_group][interp] 
             if(interp_dict['pos']==num):
-               hmaxICHEP.SetBinContent(index+1, interp_dict["max"]["050"][0])
+	       hmaxICHEP.SetBinContent(index+1, 0)
+               if "050" in interp_dict["max"].keys() :hmaxICHEP.SetBinContent(index+1, interp_dict["max"]["050"][0])
                hmaxMoriond.SetBinContent(index+1, 0)
                if "Mor" in interp_dict["max"].keys() : hmaxMoriond.SetBinContent(index+1, interp_dict["max"]["Mor"]-interp_dict["max"]["050"][0])
                hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
@@ -180,7 +186,7 @@ hmax07.GetYaxis().SetTickLength(0.0)
 hmax07.GetXaxis().SetTickLength(0.0)
 hmax07.SetLabelSize(0.013, "X")
 hmax07.SetLabelSize(0.0, "Y")
-hmax07.SetLabelOffset(-0.3, "X")
+hmax07.SetLabelOffset(-0.29, "X") # TODO position of the DeltaM labels
 hmax07.SetFillStyle(4000)
 hmax07.SetMaximum(histo_xaxis_max)
 #hmax07.SetFillColorAlpha(ROOT.kRed, 1.0)
@@ -193,7 +199,7 @@ hmax08.GetYaxis().SetTickLength(0.0)
 hmax08.GetXaxis().SetTickLength(0.0)
 hmax08.SetLabelSize(0.013, "X")
 hmax08.SetLabelSize(0.0, "Y")
-hmax08.SetLabelOffset(-0.2, "X")
+hmax08.SetLabelOffset(-0.25, "X") # TODO position of the x parameter
 hmax08.SetMaximum(histo_xaxis_max)
 hmax08.SetFillStyle(4000)
 hmax08.Draw("HBAR0 Y+ same")
@@ -241,24 +247,31 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
        i += 1
 
 #------------CMS Headers ------------------------#
-tex = ROOT.TLatex(0,45.0,"Selected CMS SUSY Results* - SMS Interpretation")
+tex = ROOT.TLatex(0,54.0,"Selected CMS SUSY Results* - SMS Interpretation")
 tex.SetTextSize(0.025)
 tex.SetLineWidth(2)
 tex.Draw()
-tex2 = ROOT.TLatex(1400,45.0,"Moriond 2017 data set")
+tex2 = ROOT.TLatex(1570,54.0,"ICHEP '16 - Moriond '17 datasets")
 tex2.SetTextSize(0.025)
 tex2.SetLineWidth(2)
 tex2.Draw()
-tex1 = ROOT.TLatex(1350,20,"CMS Preliminary")
+tex1 = ROOT.TLatex(1400,25,"#splitline{CMS Preliminary}{#sqrt{s} = 13TeV}")
 tex1.SetTextSize(0.04)
 tex1.SetLineWidth(2)
 tex1.Draw()
-tex3 = ROOT.TLatex(1350,18.,"#sqrt{s} = 13 TeV , L  = 35.9 fb^{-1}")
+tex3 = ROOT.TLatex(1410,21,"L = 12.9 fb^{-1}")
 tex3.SetTextSize(0.025)
+tex3.SetTextColor(bar_color_13_Dark)
 tex3.SetLineWidth(2)
 tex3.Draw()
+tex6 = ROOT.TLatex(1650,21.,"L = 35.9 fb^{-1}")
+tex6.SetTextSize(0.025)
+tex6.SetTextColor(bar_color_36)
+tex6.SetLineWidth(2)
+tex6.Draw()
+
 #-------------Foot note--------------------------#
-tex4 = ROOT.TLatex(1400,2.0,"#splitline{For decays with intermediate mass,}{m_{Intermediate} = x#upoint m_{Mother}+(1-x)#upoint m_{LSP}}")
+tex4 = ROOT.TLatex(1400,3.0,"#splitline{For decays with intermediate mass,}{m_{Intermediate} = x#upoint m_{Mother}+(1-x)#upoint m_{LSP}}")
 tex4.SetTextFont(42)
 tex4.SetTextSize(0.02)
 tex4.SetLineWidth(2)
@@ -299,6 +312,6 @@ c.cd()
 c.SetSelected(c)
 #c.Draw()
 c.SaveAs(path+filename+".pdf")
-#c.SaveAs(path+filename+".png")
+c.SaveAs(path+filename+".png")
 c.SaveAs(path+filename+".root")
 #c.SaveAs(path+filename+".C")
