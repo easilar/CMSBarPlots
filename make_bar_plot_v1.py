@@ -21,8 +21,8 @@ tex_width  =  1.035 #will determine pas names spacing
 histo_xaxis_max = 2000
 line_color = ROOT.kBlue
 line_depence = 1.03
-path = "/afs/hephy.at/user/e/easilar/www/barplots/" #TODO
-#path = os.getcwd()+'/'
+#path = "/afs/hephy.at/user/e/easilar/www/barplots/" #TODO
+path = os.getcwd()+'/'
 filename='barplot_v2'
 #----------------------------#------------------------#----------------------#
 
@@ -161,7 +161,7 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 #            print interp, 'INTERP'
 #            print interp_dict, 'interp_dic *** ' , interp
             if ('squark' in interp):
-               print 'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO'
+               print 8*'O'
                squarks = '#tilde{q}_{R}+#tilde{q}_{L}(#tilde{u},#tilde{d},#tilde{c},#tilde{s})'
                latex_pas.DrawLatex(interp_dict["max"]["050"][0]+10,pas_place-0.05 ,squarks)      
                latex_pas.DrawLatex(20,pas_place-0.18 ,interp_dict["max"]["050"][1]+' ' +interp_dict['search'] )
