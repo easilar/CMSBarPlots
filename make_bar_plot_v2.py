@@ -16,18 +16,17 @@ ROOT.gStyle.SetPadBottomMargin(0.15)
 ROOT.gStyle.SetPadTopMargin(0.08)
 
 #----------------------------#Configure plot from here#----------------------#
-bar_color_13 = ROOT.kGray
-bar_color_36 = ROOT.kBlue
+bar_color_13 = ROOT.kGray 
+bar_color_36 = ROOT.kBlue # 36 fb bar color
 bar_width  =  0.85 
 tex_width  =  1.035 #will determine pas names spacing 
 histo_xaxis_max = 2200
 line_color = ROOT.kBlue
-line_depence = 1.03
+line_depence = 1.03 ## 2 blue lines spacing maybe we change this as well 
 #path = "/afs/hephy.at/user/e/easilar/www/barplots/" #TODO
-path = os.getcwd()+'/'
+path = os.getcwd()+'/plots/'
 filename='barplot_Moriond'
 #----------------------------#------------------------#----------------------#
-
 
 #for analysis_group in all_analysis.keys():
 #  print "there are " , len([x for x in all_analysis[analysis_group].keys() if "-" in x]) , " analysis for " , all_analysis[analysis_group]["name_tex"]
@@ -52,10 +51,10 @@ h_Stack = ROOT.THStack('h_Stack','h_Stack')
 hmaxICHEP = ROOT.TH1F('hmaxICHEP', '', bins, xmin, xmax+1)
 hmaxMoriond = ROOT.TH1F('hmaxMoriond', '', bins, xmin, xmax+1)
 #--these are for axis--#
-hmax05 = ROOT.TH1F('hmax05', '', bins, xmin, xmax+1)
-hmax06 = ROOT.TH1F('hmax06', '', bins, xmin, xmax+1)
-hmax07 = ROOT.TH1F('hmax07', '', bins, xmin, xmax+1)
-hmax08 = ROOT.TH1F('hmax08', '', bins, xmin, xmax+1)
+hmax05 = ROOT.TH1F('hmax05', '', bins, xmin, xmax+1)	    #SUS-XX-XX 
+hmax06 = ROOT.TH1F('hmax06', '', bins, xmin, xmax+1)	    #soft , multi lepton 
+hmax07 = ROOT.TH1F('hmax07', '', bins, xmin, xmax+1)	    #string mass mother or intermediate diff
+hmax08 = ROOT.TH1F('hmax08', '', bins, xmin, xmax+1)	    # x= 0.5 ...
 #h_Stack.Draw()
 #-----------fill histograms--------------
 index = 0
@@ -93,10 +92,10 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
                #hmaxMoriond.GetXaxis().SetBinLabel(index+1, xlabel)
                hmaxICHEP.GetXaxis().SetBinLabel(index+1, "")
                hmaxMoriond.GetXaxis().SetBinLabel(index+1, "")
-               hmax05.GetXaxis().SetBinLabel(index+1, xlabel) 
-               hmax06.GetXaxis().SetBinLabel(index+1, interp_dict["decay"]) 
-               hmax07.GetXaxis().SetBinLabel(index+1, extra_xlabel_1)
-               hmax08.GetXaxis().SetBinLabel(index+1, extra_xlabel_2)
+               hmax05.GetXaxis().SetBinLabel(index+1, xlabel)                   #SUS-XX-XX 
+               hmax06.GetXaxis().SetBinLabel(index+1, interp_dict["decay"])     #soft , multi lepton 
+               hmax07.GetXaxis().SetBinLabel(index+1, extra_xlabel_1)	        #string mass mother or intermediate diff
+               hmax08.GetXaxis().SetBinLabel(index+1, extra_xlabel_2)	        # x= 0.5 ...
                index +=1
 
 
@@ -216,7 +215,6 @@ latex_ana.SetTextSize(0.015)
 latex_ana.SetTextAngle(90)
 latex_ana.SetLineWidth(2)
 latex_ana.Draw()
-pas_place = 0.1
 i = 0
 
 name_tex_xPosition = -345 # Position of the vertical label of process type, e.g. gluinos/stop and sbottom etc.
@@ -240,7 +238,6 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
           exec('line_'+str(i)+'.SetLineColor(line_color)')
           exec('line_'+str(i)+'.SetLineStyle(7)')
           exec('line_'+str(i)+'.Draw()')
-       pas_place += tex_width
        i += 1
 
 #------------CMS Headers ------------------------#
