@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import ROOT
 import os, argparse, types, sys
-from dataBase_1 import *
+from dataBase import *
 
 
 ROOT.gROOT.SetStyle("Plain")
@@ -41,8 +41,8 @@ xmax = len(all_analysis_list)
 #print "in total there are " , xmax ,"analysis histogram xmas will be " , xmax+1 , ".This result is calculated with 4 empty histogram" 
 
 #---------defining histograms-----------
-#c = ROOT.TCanvas("c","",10000,8000)
-c = ROOT.TCanvas("c","",1000,800)
+c = ROOT.TCanvas("c","",10000,8000)
+#c = ROOT.TCanvas("c","",1000,800)
 pad1 = ROOT.TPad("pad1","",0,0,1,1)
 pad2 = ROOT.TPad("pad2","",0,0,1,1)
 pad3 = ROOT.TPad("pad3","",0,0,1,1)
@@ -312,6 +312,6 @@ c.cd()
 c.SetSelected(c)
 #c.Draw()
 c.SaveAs(path+filename+".pdf")
-c.SaveAs(path+filename+".png")
+#c.SaveAs(path+filename+".png")
 c.SaveAs(path+filename+".root")
 #c.SaveAs(path+filename+".C")
