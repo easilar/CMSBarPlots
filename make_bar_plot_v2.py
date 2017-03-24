@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import ROOT
 import os, argparse, types, sys
-from dataBase_1 import *
+from dataBase import *
 
 
 ROOT.gROOT.SetStyle("Plain")
@@ -85,6 +85,7 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
                hmax07.SetBinContent(index+1, interp_dict["max"]["050"][0])
                hmax08.SetBinContent(index+1, interp_dict["max"]["050"][0])
                xlabel =  interp_dict["max"]["050"][1]+' ' +interp_dict['search']
+               if "Mor" in interp_dict["max"].keys() : xlabel =  interp_dict["max"]["050"][1].split(",")[0]+',#color[bar_color_36]{'+interp_dict["max"]["050"][1].split(",")[1]+'} ' +interp_dict['search']
                if "rightlabel" in interp_dict.keys():
                   xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
                extra_xlabel_1 = ""
