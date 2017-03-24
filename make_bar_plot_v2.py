@@ -88,7 +88,7 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 	           #print list_cadi_label
 		   if len(list_cadi_label) < 2 : xlabel =  list_cadi_label[0]+' ' +interp_dict['search'] 
 		   #xlabel =  '#color[4]{'+interp_dict["max"]["050"][1]+'} ' +interp_dict['search'] 
-		   if len(list_cadi_label) == 2 : xlabel =  list_cadi_label[0]+',#color[4]{'+list_cadi_label[1]+'} ' +interp_dict['search']
+		   if len(list_cadi_label) == 2 : xlabel =  list_cadi_label[0]+',#color[861]{'+list_cadi_label[1]+'} ' +interp_dict['search']
 		   if "rightlabel" in interp_dict.keys():
 		      xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
 		   extra_xlabel_1 = ""
