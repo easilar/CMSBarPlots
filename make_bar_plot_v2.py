@@ -73,38 +73,40 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
   for num in reversed(range(1,Tot+1)):              # This loop respectes the ordering definined by 'pos' int he dictionary!
    for interp in all_analysis[str(analysis_group)] :
          if not "name" in interp : 
-            #print 4*"-" , "interp is :" , interp
-            interp_dict = all_analysis[analysis_group][interp] 
-            if(interp_dict['pos']==num):
-	          hmaxICHEP.SetBinContent(index+1, 0)
-            if "050" in interp_dict["max"].keys() : hmaxICHEP.SetBinContent(index+1, interp_dict["max"]["050"][0])
-            hmaxMoriond.SetBinContent(index+1, 0)
-            if "Mor" in interp_dict["max"].keys() : hmaxMoriond.SetBinContent(index+1, interp_dict["max"]["Mor"]-interp_dict["max"]["050"][0])
-            hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
-            hmax06.SetBinContent(index+1, interp_dict["max"]["050"][0])
-            hmax07.SetBinContent(index+1, interp_dict["max"]["050"][0])
-            hmax08.SetBinContent(index+1, interp_dict["max"]["050"][0])
-            list_cadi_label = interp_dict["max"]["050"][1].split(",") 
-            if len(list_cadi_label) < 2 : xlabel =  interp_dict["max"]["050"][1]+' ' +interp_dict['search'] 
-            if len(list_cadi_label) == 2 : xlabel =  interp_dict["max"]["050"][1].split(",")[0]+',#color[4]{'+interp_dict["max"]["050"][1].split(",")[1]+'} ' +interp_dict['search']
-            if "rightlabel" in interp_dict.keys():
-               xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
-            extra_xlabel_1 = ""
-            extra_xlabel_2 = ""
-            if "comm" in interp_dict.keys():
-               extra_xlabel_1 +=interp_dict['comm']
-            if "x" in interp_dict.keys():
-               extra_xlabel_2 +="#scale[1.2]{#font[22]{x="+str(interp_dict['x'])+"}}"
-            #h_Stack.GetXaxis().SetBinLabel(index+1, xlabel)
-            #hmaxICHEP.GetXaxis().SetBinLabel(index+1, xlabel)
-            #hmaxMoriond.GetXaxis().SetBinLabel(index+1, xlabel)
-            hmaxICHEP.GetXaxis().SetBinLabel(index+1, "")
-            hmaxMoriond.GetXaxis().SetBinLabel(index+1, "")
-            hmax05.GetXaxis().SetBinLabel(index+1, xlabel)                   #SUS-XX-XX 
-            hmax06.GetXaxis().SetBinLabel(index+1, interp_dict["decay"])     #soft , multi lepton 
-            hmax07.GetXaxis().SetBinLabel(index+1, extra_xlabel_1)	        #string mass mother or intermediate diff
-            hmax08.GetXaxis().SetBinLabel(index+1, extra_xlabel_2)	        # x= 0.5 ...
-            index +=1
+           #print 4*"-" , "interp is :" , interp
+           interp_dict = all_analysis[analysis_group][interp] 
+           if(interp_dict['pos']==num):
+		   hmaxICHEP.SetBinContent(index+1, 0)
+		   if "050" in interp_dict["max"].keys() : hmaxICHEP.SetBinContent(index+1, interp_dict["max"]["050"][0])
+		   hmaxMoriond.SetBinContent(index+1, 0)
+		   if "Mor" in interp_dict["max"].keys() : hmaxMoriond.SetBinContent(index+1, interp_dict["max"]["Mor"]-interp_dict["max"]["050"][0])
+		   hmax05.SetBinContent(index+1, interp_dict["max"]["050"][0])
+		   hmax06.SetBinContent(index+1, interp_dict["max"]["050"][0])
+		   hmax07.SetBinContent(index+1, interp_dict["max"]["050"][0])
+		   hmax08.SetBinContent(index+1, interp_dict["max"]["050"][0])
+		   list_cadi_label = interp_dict["max"]["050"][1].split(",") 
+	           #print list_cadi_label
+		   if len(list_cadi_label) < 2 : xlabel =  list_cadi_label[0]+' ' +interp_dict['search'] 
+		   #xlabel =  '#color[4]{'+interp_dict["max"]["050"][1]+'} ' +interp_dict['search'] 
+		   if len(list_cadi_label) == 2 : xlabel =  list_cadi_label[0]+',#color[4]{'+list_cadi_label[1]+'} ' +interp_dict['search']
+		   if "rightlabel" in interp_dict.keys():
+		      xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
+		   extra_xlabel_1 = ""
+		   extra_xlabel_2 = ""
+		   if "comm" in interp_dict.keys():
+		      extra_xlabel_1 +=interp_dict['comm']
+		   if "x" in interp_dict.keys():
+		      extra_xlabel_2 +="#scale[1.2]{#font[22]{x="+str(interp_dict['x'])+"}}"
+		   #h_Stack.GetXaxis().SetBinLabel(index+1, xlabel)
+		   #hmaxICHEP.GetXaxis().SetBinLabel(index+1, xlabel)
+		   #hmaxMoriond.GetXaxis().SetBinLabel(index+1, xlabel)
+		   hmaxICHEP.GetXaxis().SetBinLabel(index+1, "")
+		   hmaxMoriond.GetXaxis().SetBinLabel(index+1, "")
+		   hmax05.GetXaxis().SetBinLabel(index+1, xlabel)                   #SUS-XX-XX 
+		   hmax06.GetXaxis().SetBinLabel(index+1, interp_dict["decay"])     #soft , multi lepton 
+		   hmax07.GetXaxis().SetBinLabel(index+1, extra_xlabel_1)	        #string mass mother or intermediate diff
+		   hmax08.GetXaxis().SetBinLabel(index+1, extra_xlabel_2)	        # x= 0.5 ...
+		   index +=1
 
 
 
