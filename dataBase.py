@@ -130,9 +130,9 @@ all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepL005']  = {'pos':3,'sear
 all_analysis["EWKGauginos"]['16-039-TChiChipmSlepL095']  = {'pos':4,'search':'multilepton + 2l same-sign (flavour democratic)', 'max'  : {'050': [0, 'SUS-16-039',  sqrt, lumi],'Mor':1050},
 'decay': TChiChipmSlepL, 'x':0.95}
 
-all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepStau005']   = {'pos':5,'search':'multilepton (tau enriched)', 'max'  : {'050': [0, 'SUS-16-024 , SUS-16-039',  sqrt, lumi],'Mor':1030}, 
+all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepStau005']   = {'pos':5,'search':'multilepton (tau enriched)', 'max'  : {'050': [0, 'SUS-16-039',  sqrt, lumi],'Mor':1030}, 
 'decay': TChiChipmSlepStau, 'x':0.5}
-all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepStau050']  = {'pos':6,'search':'multilepton (tau enriched)', 'max'  : {'050': [0, 'SUS-16-024 , SUS-16-039',  sqrt, lumi],'Mor':1080},
+all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepStau050']  = {'pos':6,'search':'multilepton (tau enriched)', 'max'  : {'050': [0, 'SUS-16-039',  sqrt, lumi],'Mor':1080},
 'decay': TChiChipmSlepStau, 'x':0.05}
 all_analysis["EWKGauginos"]['16-039-TChiChipmSlepStau095']  = {'pos':7,'search':'multilepton (tau enriched)', 'max'  : {'050': [0, 'SUS-16-039',  sqrt, lumi],'Mor':1050},
 'decay': TChiChipmSlepStau, 'x':0.95}

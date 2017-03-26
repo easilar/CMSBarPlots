@@ -2,14 +2,14 @@
 import ROOT
 import os, argparse, types, sys
 from dataBase import *
-
+ROOT.gStyle.Reset()
 
 ROOT.gROOT.SetStyle("Plain")
 #ROOT.gROOT.SetBatch() #canvas will not be drawn
 ROOT.gStyle.SetOptStat(0000)
 #ROOT.TGaxis.SetMaxDigits(4)
 #ROOT.gPad.SetTicks(0,0)
-ROOT.gStyle.SetCanvasBorderMode(0)
+#ROOT.gStyle.SetCanvasBorderMode(0)
 ROOT.gStyle.SetPadLeftMargin(0.18)
 ROOT.gStyle.SetPadRightMargin(0.05)
 ROOT.gStyle.SetPadBottomMargin(0.15)
@@ -86,9 +86,11 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 		   hmax08.SetBinContent(index+1, interp_dict["max"]["050"][0])
 		   list_cadi_label = interp_dict["max"]["050"][1].split(",") 
 	           #print list_cadi_label
-		   if len(list_cadi_label) < 2 : xlabel =  list_cadi_label[0]+' ' +interp_dict['search'] 
+		   if len(list_cadi_label) < 2 : 
+			xlabel =  list_cadi_label[0]+' ' +interp_dict['search'] 
+			if "Mor" in interp_dict["max"].keys() : xlabel =  '#color[4]{'+list_cadi_label[0]+'} ' +interp_dict['search']
 		   #xlabel =  '#color[4]{'+interp_dict["max"]["050"][1]+'} ' +interp_dict['search'] 
-		   if len(list_cadi_label) == 2 : xlabel =  list_cadi_label[0]+',#color[861]{'+list_cadi_label[1]+'} ' +interp_dict['search']
+		   if len(list_cadi_label) == 2 : xlabel =  list_cadi_label[0]+',#color[4]{'+list_cadi_label[1]+'} ' +interp_dict['search']
 		   if "rightlabel" in interp_dict.keys():
 		      xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
 		   extra_xlabel_1 = ""
@@ -154,6 +156,7 @@ h_Stack.Add(hmaxICHEP)
 h_Stack.Add(hmaxMoriond)
 #h_Stack.Draw('')
 h_Stack.SetMaximum(histo_xaxis_max)
+#h_Stack.SetTickLength(0)
 h_Stack.SetTitle("")
 h_Stack.Draw('HBAR0 Y+')
 pad2.Draw()
