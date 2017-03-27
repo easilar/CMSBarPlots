@@ -129,7 +129,7 @@ EW Gauginos
 '''
 all_analysis["EWKGauginos"]['line']                  	 = {'pos':1,'search':'', 'max'  : {'050': [0.0, ''           , 0 , 0   ]}, 'decay': ''}
 
-all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepL05']   = {'pos':2,'search':'multilepton (flavour democratic)', 'max'  : {'050': [1000, 'SUS-16-024 , SUS-16-039',  sqrt, lumi],'Mor':1150}, 
+all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepL05']   = {'pos':2,'search':'multilepton (flavour democratic)', 'max'  : {'050': [1000, 'SUS-16-024 , SUS-16-039',  sqrt, lumi],'Mor':1140}, 
 'decay': TChiChipmSlepL, 'x':0.5}
 all_analysis["EWKGauginos"]['16-024-16-039-TChiChipmSlepL005']  = {'pos':3,'search':'multilepton + 2l same-sign (flavour democratic)', 'max'  : {'050': [990, 'SUS-16-024 , SUS-16-039',  sqrt, lumi],'Mor':1145},
 'decay': TChiChipmSlepL, 'x':0.05}
