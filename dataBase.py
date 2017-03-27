@@ -58,7 +58,7 @@ all_analysis["Gluino"]['']                     ={'pos':1, 'search':'', 		 'max' 
 all_analysis["Gluino"]['16-014-16-033-T1']     ={'pos':2,'search':'0l(MHT)', 	 'max'  : {'050': [1675, 'SUS-16-014 , SUS-16-033',   sqrt, lumi],'Mor':1840},  'decay': T1, }
 all_analysis["Gluino"]['16-015-16-036-T1']     ={'pos':3,'search':'0l(MT2)', 	 'max'  : {'050': [1650, 'SUS-16-015 , SUS-16-036',   sqrt, lumi],'Mor':1860},  'decay': T1, }
 all_analysis["Gluino"]['16-014-16-033-T1bbbb'] ={'pos':4,'search':'0l(MHT)', 'max'  : {'050': [1750, 'SUS-16-014 , SUS-16-033',   sqrt, lumi],'Mor':1925},  'decay': T1bbbb, }
-all_analysis["Gluino"]['16-015-16-036-T1bbbb'] ={'pos':5,'search':'0l(MT2)',	 'max'  : {'050': [1750, 'SUS-16-015 , SUS-16-033',   sqrt, lumi],'Mor':2025},  'decay': T1bbbb, }
+all_analysis["Gluino"]['16-015-16-036-T1bbbb'] ={'pos':5,'search':'0l(MT2)',	 'max'  : {'050': [1750, 'SUS-16-015 , SUS-16-036',   sqrt, lumi],'Mor':2025},  'decay': T1bbbb, }
 all_analysis["Gluino"]['16-016-T1bbbb']        ={'pos':6,'search':'0l(#alpha_{T})', 'max'  : {'050': [1720, 'SUS-16-016',   sqrt, lumi]},  'decay': T1bbbb,}
 
 all_analysis["Gluino"]['16-014-16-033-T1tttt'] ={'pos':7,'search':'0l(MHT)',       'max'  : {'050': [1620, 'SUS-16-014 , SUS-16-033',   sqrt, lumi],'Mor':1945},  'decay': T1tttt, }
