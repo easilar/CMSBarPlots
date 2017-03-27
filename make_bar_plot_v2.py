@@ -17,12 +17,13 @@ ROOT.gStyle.SetPadTopMargin(0.08)
 
 #----------------------------#Configure plot from here#----------------------#
 #bar_color_13 = ROOT.kGray
-bar_color_13 = ROOT.kCyan-8
+bar_color_13 = ROOT.kCyan-10
 #bar_color_13_Dark = ROOT.kGray+2
 bar_color_13_Dark = ROOT.kCyan-1
-bar_color_36 = ROOT.kAzure+5 # 36 fb bar color
+#bar_color_13_Dark = ROOT.kOrange+9
+#bar_color_36 = ROOT.kAzure+5 # 36 fb bar color
+bar_color_36 = ROOT.kOrange+9 # 36 fb bar color
 #bar_color_36 = ROOT.kGray
-#bar_color_13 = ROOT.kCyan-10 # 36 fb bar color
 
 
 bar_width  =  0.85 
