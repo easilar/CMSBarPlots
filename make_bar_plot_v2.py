@@ -52,7 +52,7 @@ xmax = len(all_analysis_list)
 #print "in total there are " , xmax ,"analysis histogram xmas will be " , xmax+1 , ".This result is calculated with 4 empty histogram" 
 
 #---------defining histograms-----------
-c = ROOT.TCanvas("c","",10000,8000)
+c = ROOT.TCanvas("c","",30000,24000)
 #c = ROOT.TCanvas("c","",1000,800)
 pad1 = ROOT.TPad("pad1","",0,0,1,1)
 pad2 = ROOT.TPad("pad2","",0,0,1,1)
