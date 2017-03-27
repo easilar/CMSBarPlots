@@ -43,9 +43,9 @@ T5ZZGMSB = '#tilde{g} #rightarrow qq#tilde{#chi}^{0} _1, #tilde{#chi}^{0} _1 #ri
 squarks = '#tilde{q}_{R}+#tilde{q}_{L}(#tilde{u},#tilde{d},#tilde{c},#tilde{s})'  # Label to be put for degenerate squarks
 
 D_M = 'max exclusion for ' + 'M_{Mother}- M_{LSP}#approx'
-D_SUS_16_030 = 'M_{Mother}- M_{LSP} = 20 GeV'
-D_I = 'M_{Interm.}- M_{LSP}#approx'
-T1btbt_Comm = 'M_{#tilde{#chi}^{#pm}_{1}} #approx M_{LSP}'
+D_SUS_16_030 = '(M_{Mother}- M_{LSP} = 20 GeV)'
+D_I = '(M_{Interm.}- M_{LSP} = 5 GeV)'
+T1btbt_Comm = '(M_{#tilde{#chi}^{#pm}_{1}} #approx M_{LSP})'
 # NEW
 
 
@@ -89,9 +89,9 @@ Stop
 all_analysis["Squark"]['16-014-16-033-T2tt']     ={'pos':1,'search':'0l(MHT)', 	'max'  : {'050': [840, 'SUS-16-014 , SUS-16-033',  sqrt, lumi],'Mor':970},  	'decay': T2tt,   }
 all_analysis["Squark"]['16-015-16-036-T2tt']     ={'pos':2,'search':'0l(MT2)', 	'max'  : {'050': [900, 'SUS-16-015 , SUS-16-036',  sqrt, lumi],'Mor':1070},  	'decay': T2tt,  }
 all_analysis["Squark"]['16-016-T2tt']            ={'pos':3,'search':'0l(#alpha_{T})', 	'max'  : {'050': [860, 'SUS-16-016',  sqrt, lumi]},     'decay': T2tt,   }
-all_analysis["Squark"]['16-027-17-001-T2tt']     ={'pos':4,'search':'2l opposite-sig','max':{'050': [650, 'SUS-16-027 , SUS-17-001',  sqrt, lumi] ,'Mor':820 },'decay': T2tt,  }
+all_analysis["Squark"]['16-027-17-001-T2tt']     ={'pos':4,'search':'2l opposite-sign','max':{'050': [650, 'SUS-16-027 , SUS-17-001',  sqrt, lumi] ,'Mor':820 },'decay': T2tt,  }
 all_analysis["Squark"]['16-028-16-051-T2tt']     ={'pos':5,'search':'1l', 	        'max'  : {'050': [860, 'SUS-16-028 , SUS-16-051',  sqrt, lumi],'Mor':1115 },     'decay': T2tt,  }
-all_analysis["Squark"]['16-029-16-049-T2tt']     ={'pos':6,'search':'0l', 	        'max'  : {'050': [860, 'SUS-16-029',  sqrt, lumi],'Mor':1080 },     'decay': T2tt,}
+all_analysis["Squark"]['16-029-16-049-T2tt']     ={'pos':6,'search':'0l', 	        'max'  : {'050': [860, 'SUS-16-029 , SUS-16-049',  sqrt, lumi],'Mor':1080 },     'decay': T2tt,}
 all_analysis["Squark"]['16-030-T2tt']            ={'pos':7,'search':'0l', 		'max'  : {'050': [900, 'SUS-16-030',  sqrt, lumi]},     'decay': T2tt,}
 all_analysis["Squark"]['16-032-T2cc']            ={'pos':8,'search':'0l', 		'max'  : {'050': [0, 'SUS-16-032',  sqrt, lumi], 'Mor':525},     'decay': T2cc, 'comm':'('+D_M +'10 GeV)' }
 all_analysis["Squark"]['16-036-T2cc']            ={'pos':9,'search':'0l(MT2)',        'max'  : {'050': [0, 'SUS-16-036',  sqrt, lumi], 'Mor':525},     'decay': T2cc, 'comm':'('+D_M +'10 GeV)' }
