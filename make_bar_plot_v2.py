@@ -15,6 +15,7 @@ ROOT.gStyle.SetPadRightMargin(0.05)
 ROOT.gStyle.SetPadBottomMargin(0.15)
 ROOT.gStyle.SetPadTopMargin(0.08)
 
+'''
 #----------------------------#Configure plot from here#----------------------#
 #bar_color_13 = ROOT.kGray
 bar_color_13 = ROOT.kCyan-10
@@ -25,6 +26,13 @@ bar_color_13_Dark = ROOT.kCyan-1
 bar_color_36 = ROOT.kOrange+9 # 36 fb bar color
 #bar_color_36 = ROOT.kGray
 
+'''
+bar_color_13 = ROOT.kMagenta-4
+
+bar_color_13  = ROOT.kOrange -3
+bar_color_36 = ROOT.kAzure+7 
+
+bar_color_13  = ROOT.kOrange -3
 
 bar_width  =  0.85 
 tex_width  =  1.035 #will determine pas names spacing 
@@ -263,24 +271,24 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
        i += 1
 
 #------------CMS Headers ------------------------#
-tex = ROOT.TLatex(0,58.5,"Selected CMS SUSY Results* - SMS Interpretation")
+tex = ROOT.TLatex(0,54.5,"Selected CMS SUSY Results* - SMS Interpretation")
 tex.SetTextSize(0.025)
 tex.SetLineWidth(2)
 tex.Draw()
-tex2 = ROOT.TLatex(1570,58.5,"ICHEP '16 - Moriond '17 datasets")
+tex2 = ROOT.TLatex(1750,54.5,"#color[" + str(bar_color_13) + "]{ICHEP '16} - #color[" +str(bar_color_36) + "]{Moriond '17}")
 tex2.SetTextSize(0.025)
 tex2.SetLineWidth(2)
 tex2.Draw()
-tex1 = ROOT.TLatex(1400,25,"#splitline{CMS Preliminary}{#sqrt{s} = 13TeV}")
+tex1 = ROOT.TLatex(1500,20,"#splitline{CMS Preliminary}{#sqrt{s} = 13TeV}")
 tex1.SetTextSize(0.04)
 tex1.SetLineWidth(2)
 tex1.Draw()
-tex3 = ROOT.TLatex(1410,21,"L = 12.9 fb^{-1}")
+tex3 = ROOT.TLatex(1510,16,"L = 12.9 fb^{-1}")
 tex3.SetTextSize(0.025)
-tex3.SetTextColor(bar_color_13_Dark)
+tex3.SetTextColor(bar_color_13)
 tex3.SetLineWidth(2)
 tex3.Draw()
-tex6 = ROOT.TLatex(1650,21.,"L = 35.9 fb^{-1}")
+tex6 = ROOT.TLatex(1750,16.,"L = 35.9 fb^{-1}")
 tex6.SetTextSize(0.025)
 tex6.SetTextColor(bar_color_36)
 tex6.SetLineWidth(2)
