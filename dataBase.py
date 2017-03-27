@@ -26,6 +26,7 @@ T1     = pp+'#tilde{g}#tilde{g}, #tilde{g} #rightarrow qq #tilde{#chi}^{0}_{1}'
 T2     = pp+'#tilde{q}#tilde{q}, #tilde{q} #rightarrow q #tilde{#chi}^{0}_{1}'
 T1tttt = pp+'#tilde{g}#tilde{g}, #tilde{g} #rightarrow tt #tilde{#chi}^{0}_{1}'
 T1bbbb = pp+'#tilde{g}#tilde{g}, #tilde{g} #rightarrow bb #tilde{#chi}^{0}_{1}'
+T1btbt = pp+'#tilde{g}#tilde{g}, #tilde{g} #rightarrow bt #tilde{#chi}^{#pm}_{1}'
 
 T5VV   = pp+'#tilde{g}#tilde{g}, #tilde{g} #rightarrow qq(#tilde{#chi}^{#pm}_{1}/#tilde{#chi}^{0}_{2})#rightarrow qq (W/Z)#tilde{#chi}^{0}_{1}'
 T5WW   = pp+'#tilde{g}#tilde{g}, #tilde{g} #rightarrow qq#tilde{#chi}^{#pm}_{1} #rightarrow qq W#tilde{#chi}^{0}_{1}'
@@ -40,8 +41,9 @@ T5ZZGMSB = '#tilde{g} #rightarrow qq#tilde{#chi}^{0} _1, #tilde{#chi}^{0} _1 #ri
 
 squarks = '#tilde{q}_{R}+#tilde{q}_{L}(#tilde{u},#tilde{d},#tilde{c},#tilde{s})'  # Label to be put for degenerate squarks
 
-D_M = 'M_{Mother}- M_{LSP}#approx'
+D_M = 'max exclusion for' + 'M_{Mother}- M_{LSP}#approx'
 D_I = 'M_{Interm.}- M_{LSP}#approx'
+T1btbt_Comm = 'm_{#tilde{#chi}^{#pm}_{1}} #approx m_{LSP}'
 # NEW
 
 
@@ -60,13 +62,14 @@ all_analysis["Gluino"]['16-016-T1bbbb']    = {'pos':6,'search':'0l(#alpha_{T})',
 all_analysis["Gluino"]['16-014-16-033-T1tttt'] = {'pos':7,'search':'0l(MHT)',       'max'  : {'050': [1620, 'SUS-16-014 , SUS-16-033',   sqrt, lumi],'Mor':1945},  'decay': T1tttt, }
 all_analysis["Gluino"]['16-015-16-036-T1tttt'] = {'pos':8,'search':'0l(MT2)',       'max'  : {'050': [1700, 'SUS-16-015 , SUS-16-033',   sqrt, lumi],'Mor':1900},  'decay': T1tttt, }
 all_analysis["Gluino"]['16-016-T1tttt'] = {'pos':9,'search':'0l(#alpha_{T})',    'max'  : {'050': [1440, 'SUS-16-016',  sqrt, lumi]},  'decay': T1tttt, }
-all_analysis["Gluino"]['16-019-16-042-T1tttt'] = {'pos':10,'search':'1l(#Delta#phi)','max': {'050': [1630, 'SUS-16-019 , SUS-16-042',   sqrt, lumi] , 'Mor':1900},  'decay': T1tttt, }
+all_analysis["Gluino"]['16-019-16-042-T1tttt'] = {'pos':10,'search':'1l(#Delta#phi)','max': {'050': [1630, 'SUS-16-019 , SUS-16-042',   sqrt, lumi] , 'Mor':1800},  'decay': T1tttt, }
 all_analysis["Gluino"]['16-020-16-035-T1tttt'] = {'pos':11,'search':'2l same-sign','max': {'050': [1370, 'SUS-16-020', sqrt, lumi], 'Mor':1530},  'decay': T1tttt, }
 all_analysis["Gluino"]['16-022-16-041-T1tttt'] = {'pos':12,'search':'multilepton', 'max': {'050': [1200, 'SUS-16-022',  sqrt, lumi], 'Mor':1630},  'decay': T1tttt, }
 all_analysis["Gluino"]['16-030-T1tttt']    = {'pos':13,'search':'0l', 		 'max'  : {'050': [1760, 'SUS-16-030',   sqrt, lumi]},  'decay': T1tttt,  }
 all_analysis["Gluino"]['16-037-T1tttt']    = {'pos':14,'search':'1l(MJ)', 	 'max'  : {'050': [0 , 'SUS-16-037',   sqrt, lumi], 'Mor':1900 },  'decay': T1tttt,  }
 
 all_analysis["Gluino"]['16-030-T5tctc']    = {'pos':15,'search':'0l', 	   	 'max'  : {'050': [1500, 'SUS-16-030',   sqrt, lumi]},  'decay': T5tctc, 'x':0.5}
+all_analysis["Gluino"]['16-033-T1btbt']    = {'pos':15,'search':'0l(MHT)', 	 'max'  : {'050': [0, 'SUS-16-033 ',   sqrt, lumi],'Mor':1760},  'decay': T1btbt, 'comm':T1btbt_Comm }
 all_analysis["Gluino"]['16-019-16-042-T5WW']  = {'pos':16,'search':'1l(#Delta#phi)','max'  : {'050': [1600, 'SUS-16-019 , SUS-16-042',   sqrt, lumi] , 'Mor':1900},  'decay': T5WW, 'x':0.5  }
 
 
@@ -88,14 +91,17 @@ all_analysis["Squark"]['16-027-17-001-T2tt']= {'pos':4,'search':'2l','max':{'050
 all_analysis["Squark"]['16-028-16-051-T2tt']= {'pos':5,'search':'1l', 	        'max'  : {'050': [860, 'SUS-16-028 , SUS-16-051',  sqrt, lumi],'Mor':1115 },     'decay': T2tt,  }
 all_analysis["Squark"]['16-029-T2tt']    = {'pos':6,'search':'0l', 	        'max'  : {'050': [860, 'SUS-16-029',  sqrt, lumi]},     'decay': T2tt,}
 all_analysis["Squark"]['16-030-T2tt']    = {'pos':7,'search':'0l', 		'max'  : {'050': [900, 'SUS-16-030',  sqrt, lumi]},     'decay': T2tt,}
-all_analysis["Squark"]['16-049-T2tt']    = {'pos':8,'search':'0l', 		'max'  : {'050': [0, 'SUS-16-049',  sqrt, lumi], 'Mor':1030},     'decay': T2tt,}
-
+all_analysis["Squark"]['16-049-T2tt']    = {'pos':8,'search':'0l', 		'max'  : {'050': [0, 'SUS-16-049',  sqrt, lumi], 'Mor':1080},     'decay': T2tt,}
+all_analysis["Squark"]['16-032-T2cc']    = {'pos':8,'search':'0l', 		'max'  : {'050': [0, 'SUS-16-032',  sqrt, lumi], 'Mor':525},     'decay': T2cc, 'comm':'('+D_M +'10 GeV)' }
+all_analysis["Squark"]['16-036-T2cc']    = {'pos':8,'search':'0l(MT2)', 		'max'  : {'050': [0, 'SUS-16-036',  sqrt, lumi], 'Mor':525},     'decay': T2cc, 'comm':'('+D_M +'10 GeV)' }
+all_analysis["Squark"]['16-049-T2cc']    = {'pos':8,'search':'0l', 		'max'  : {'050': [0, 'SUS-16-049',  sqrt, lumi], 'Mor':570},     'decay': T2cc, 'comm':'('+D_M +'40 GeV)' }
 all_analysis["Squark"]['16-025-T2bbWWoff'] = {'pos':9,'search':'2l' , 'max'  : {'050': [365, 'SUS-16-025',  sqrt, lumi]},    'decay': T2bbWWoff, 'comm':'('+D_M +'30 GeV)'    ,}
-all_analysis["Squark"]['16-029-T2bbWWoff'] = {'pos':10,'search':'0l', 'max'  : {'050': [450, 'SUS-16-029',  sqrt, lumi]},    'decay': T2bbWWoff,  'comm':'('+D_M +'25 GeV)'     , }
+all_analysis["Squark"]['16-029-16-049-T2bbWWoff'] = {'pos':10,'search':'0l', 'max'  : {'050': [450, 'SUS-16-029',  sqrt, lumi],'Mor':550},    'decay': T2bbWWoff,  'comm':'('+D_M +'25 GeV)'     , }
 all_analysis["Squark"]['16-031-T2bbWWoff'] = {'pos':11,'search':'1l soft','max'  : {'050': [330, 'SUS-16-031',  sqrt, lumi]},'decay': T2bbWWoff, 'comm':'('+D_M +'30 GeV)',}
 
+#all_analysis["Squark"]['16-036-T6bbWW']    = {'pos':8,'search':'0l(MT2)', 		'max'  : {'050': [0, 'SUS-16-036',  sqrt, lumi], 'Mor':900},     'decay': T6bbWW,'x':0.5 }
 all_analysis["Squark"]['16-028-T6bbWW']  = {'pos':12,'search':'1l', 	'max'  : {'050': [760, 'SUS-16-028',  sqrt, lumi]},  'decay': T6bbWW, 'x':0.5}
-all_analysis["Squark"]['16-029-T6bbWW']  = {'pos':13,'search':'0l', 	'max'  : {'050': [710, 'SUS-16-029',  sqrt, lumi]},  'decay': T6bbWW, 'x':0.5}
+all_analysis["Squark"]['16-029-16-049-T6bbWW']  = {'pos':13,'search':'0l', 	'max'  : {'050': [710, 'SUS-16-029',  sqrt, lumi],'Mor':750},  'decay': T6bbWW, 'x':0.5}
 
 
 
