@@ -11,6 +11,7 @@ pp = 'pp #rightarrow'
 
 T2bb 	 	  = pp+'#tilde{b}#tilde{b}, #tilde{b} #rightarrow b  #tilde{#chi}_{1}^{0}'
 T2tt		  = pp+'#tilde{t}#tilde{t}, #tilde{t} #rightarrow t  #tilde{#chi}_{1}^{0}'
+T2cc		  = pp+'#tilde{c}#tilde{c}, #tilde{c} #rightarrow c  #tilde{#chi}_{1}^{0}'
 T6bbHH = pp+'#tilde{b}#tilde{b}, #tilde{b} #rightarrow b  #tilde{#chi}_{2}^{0}#rightarrow b H#tilde{#chi}_{1}^0'
 
 T6bbWW 		  = pp+'#tilde{t}#tilde{t}, #tilde{t}#rightarrow #tilde{#chi}_{1}^{#pm} b #rightarrow W^{#pm} #tilde{#chi}_{1}^{0}'
