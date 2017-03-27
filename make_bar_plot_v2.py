@@ -16,9 +16,11 @@ ROOT.gStyle.SetPadBottomMargin(0.15)
 ROOT.gStyle.SetPadTopMargin(0.08)
 
 #----------------------------#Configure plot from here#----------------------#
-bar_color_13 = ROOT.kGray
-bar_color_13_Dark = ROOT.kGray+2
-bar_color_36 = ROOT.kAzure+1 # 36 fb bar color
+#bar_color_13 = ROOT.kGray
+bar_color_13 = ROOT.kCyan-8
+#bar_color_13_Dark = ROOT.kGray+2
+bar_color_13_Dark = ROOT.kCyan-1
+bar_color_36 = ROOT.kAzure+5 # 36 fb bar color
 #bar_color_36 = ROOT.kGray
 #bar_color_13 = ROOT.kCyan-10 # 36 fb bar color
 
@@ -41,8 +43,8 @@ xmax = len(all_analysis_list)
 #print "in total there are " , xmax ,"analysis histogram xmas will be " , xmax+1 , ".This result is calculated with 4 empty histogram" 
 
 #---------defining histograms-----------
-#c = ROOT.TCanvas("c","",10000,8000)
-c = ROOT.TCanvas("c","",1000,800)
+c = ROOT.TCanvas("c","",10000,8000)
+#c = ROOT.TCanvas("c","",1000,800)
 pad1 = ROOT.TPad("pad1","",0,0,1,1)
 pad2 = ROOT.TPad("pad2","",0,0,1,1)
 pad3 = ROOT.TPad("pad3","",0,0,1,1)
@@ -90,9 +92,9 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
 	           #print list_cadi_label
 		   if len(list_cadi_label) < 2 : 
 			xlabel =  list_cadi_label[0]+' ' +interp_dict['search'] 
-			if "Mor" in interp_dict["max"].keys() : xlabel =  '#color[4]{'+list_cadi_label[0]+'} ' +interp_dict['search']
+			if "Mor" in interp_dict["max"].keys() : xlabel =  '#color[4]{'+list_cadi_label[0]+'}   '+interp_dict['search']
 		   #xlabel =  '#color[4]{'+interp_dict["max"]["050"][1]+'} ' +interp_dict['search'] 
-		   if len(list_cadi_label) == 2 : xlabel =  list_cadi_label[0]+',#color[4]{'+list_cadi_label[1]+'} ' +interp_dict['search']
+		   if len(list_cadi_label) == 2 : xlabel =  list_cadi_label[0]+',#color[4]{'+list_cadi_label[1]+'}   ' +interp_dict['search']
 		   if "rightlabel" in interp_dict.keys():
 		      xlabel +=100*" "+"#scale[1.4]{#font[22]{"+interp_dict['rightlabel']+"}}"
 		   extra_xlabel_1 = ""
@@ -212,7 +214,7 @@ hmax08.GetYaxis().SetTickLength(0.0)
 hmax08.GetXaxis().SetTickLength(0.0)
 hmax08.SetLabelSize(0.013, "X")
 hmax08.SetLabelSize(0.0, "Y")
-hmax08.SetLabelOffset(-0.25, "X") # TODO position of the x parameter
+hmax08.SetLabelOffset(-0.2, "X") # TODO position of the x parameter
 hmax08.SetMaximum(histo_xaxis_max)
 hmax08.SetFillStyle(4000)
 hmax08.Draw("HBAR0 Y+ same")
@@ -230,7 +232,7 @@ latex_pas.SetLineWidth(2)
 latex_ana = ROOT.TLatex()
 latex_ana.SetTextColor(line_color)
 latex_ana.SetTextFont(70)
-latex_ana.SetTextSize(0.015)
+latex_ana.SetTextSize(0.02)
 latex_ana.SetTextAngle(90)
 latex_ana.SetLineWidth(2)
 latex_ana.Draw()
@@ -260,11 +262,11 @@ for analysis_group in  ['EWKGauginos','Squark','Gluino']:
        i += 1
 
 #------------CMS Headers ------------------------#
-tex = ROOT.TLatex(0,54.0,"Selected CMS SUSY Results* - SMS Interpretation")
+tex = ROOT.TLatex(0,58.5,"Selected CMS SUSY Results* - SMS Interpretation")
 tex.SetTextSize(0.025)
 tex.SetLineWidth(2)
 tex.Draw()
-tex2 = ROOT.TLatex(1570,54.0,"ICHEP '16 - Moriond '17 datasets")
+tex2 = ROOT.TLatex(1570,58.5,"ICHEP '16 - Moriond '17 datasets")
 tex2.SetTextSize(0.025)
 tex2.SetLineWidth(2)
 tex2.Draw()
